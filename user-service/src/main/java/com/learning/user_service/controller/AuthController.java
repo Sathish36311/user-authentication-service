@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learning.user_service.dto.LoginRequest;
+import com.learning.user_service.entity.User;
 import com.learning.user_service.service.AuthService;
 
 @RestController
@@ -19,7 +20,7 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-//		authService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
+		User user = authService.authenticateUser(loginRequest.getUsername(), loginRequest.getPassword());
 		return null;
 	}
 }
