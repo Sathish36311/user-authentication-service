@@ -1,5 +1,14 @@
 package com.learning.user_service.dto;
 
-public class LoginResponse {
+import lombok.Data;
 
+@Data
+public class LoginResponse {
+	private String token;
+
+	private long expiresIn;
+
+	public String getToken() {
+		return token;
+	}
 }

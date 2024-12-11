@@ -1,5 +1,6 @@
 package com.learning.user_service.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,15 +16,12 @@ import com.learning.user_service.repository.UserRepository;
 @Configuration
 public class ApplicationConfiguration {
 
-	private final UserRepository userRepository;
-
-	public ApplicationConfiguration(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+	@Autowired
+	private UserRepository userRepository;
 
 	@Bean
 	UserDetailsService userDetailsService() {
-		return username -> userRepository.findByUsername(username)
+		return username -> userRepository.findByEmail(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
 	}
